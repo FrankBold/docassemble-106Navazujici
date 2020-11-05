@@ -1,1 +1,59 @@
-ssassdf
+metadata:
+  title: Žádost o informace - Navazující řízení
+  short title: 106 - Navazující
+  description: V případě odmítnutí žádosti o informace či jiného zádrhelu Vám poradíme co s tím.
+  authors:
+    - name: Michal Kuk
+      organization: Frank Bold Society
+  revision_date: 2020-11-05
+---
+features:
+  question help button: true
+---
+objects:
+  - Podatel: Person.using(nazev="podatele")
+  - Adresat: Organization
+  - Podani: Thing
+  - Komentar: DAFileCollection
+---
+mandatory: True
+code: |
+  multi_user = True
+---
+question: |
+  Jakou situaci řešíte?
+field: situace
+choices:
+  - Orgán nijak nereagoval: necinnost
+  - Žádost či její část byla odmítnuta: odmitnuti
+  - Nebyly poskytnuty všechny požadované informace: neuplne
+  - Byl jsem vyzván k zaplacení nákladů: uhrada
+  - Žádost byla vyrizena, ale spatně: chybne
+  - Jiné: jine
+---
+question: |
+  Z jakého důvodu žádá úhradu
+field: duvod
+choices:
+  - Pořízení kopií: kopie
+  - Opatření technických nosičů dat: nosice
+  - Odeslání informací: odeslani
+  - Mimořádné rozsáhlé vyhledávání: rozsahu
+---
+question: |
+  Úhrada z důvodu pořízení kopií
+subquestion: |
+  Jedná se o takové a onaké náklady spojené s tím a oním.
+
+  V případě pořízení kopie tiskem lze akceptovat jednotkovou sazbu v identické výši jakao v případě pořízení listiné kopie.
+
+  ## Oprávněné případy:
+  Požadování úhrady za poskytnutí informaci za kopie listin spolu s uvedením seznamu poskytovaných kopií s údajem o počtu listů, druhu a formátu kopie, jednotkové částce a celkové částce za kopie požadované.
+
+  ## Neoprávněné případy:
+  Požadování úhrady za poskytnutí informací za kopie listin pouze s uvedením celkové částky požadované za kopie.
+field: hodnoceni
+buttons:
+  - Důvod je oprávnění: opravnen
+  - Neoprávněné: neopravnen
+  - Nevím: nevi
