@@ -38,7 +38,7 @@ choices:
   - Pořízení kopií: kopie
   - Opatření technických nosičů dat: nosice
   - Odeslání informací: odeslani
-  - Mimořádné rozsáhlé vyhledávání: rozsahu
+  - Mimořádné rozsáhlé vyhledávání: rozsah
 ---
 question: |
   Úhrada z důvodu pořízení kopií
@@ -47,11 +47,9 @@ subquestion: |
 
   V případě pořízení kopie tiskem lze akceptovat jednotkovou sazbu v identické výši jakao v případě pořízení listiné kopie.
 
-  ## Oprávněné případy:
-  Požadování úhrady za poskytnutí informaci za kopie listin spolu s uvedením seznamu poskytovaných kopií s údajem o počtu listů, druhu a formátu kopie, jednotkové částce a celkové částce za kopie požadované.
-
-  ## Neoprávněné případy:
-  Požadování úhrady za poskytnutí informací za kopie listin pouze s uvedením celkové částky požadované za kopie.
+  ## Časté:
+  - Požadování úhrady za poskytnutí informaci za kopie listin spolu s uvedením seznamu poskytovaných kopií s údajem o počtu listů, druhu a formátu kopie, jednotkové částce a celkové částce za kopie požadované.
+  - Požadování úhrady za poskytnutí informací za kopie listin pouze s uvedením celkové částky požadované za kopie.
 field: hodnoceni
 buttons:
   - Důvod je oprávnění: opravnen
