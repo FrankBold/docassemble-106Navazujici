@@ -11,7 +11,7 @@ def ziskejSituace():
   return dict
 
 def ziskejDuvody(parent):
-  page = requests.get("https://da-test.frankbold.org/playgroundstatic/PravoNaInformace/1/situace.json")
+  page = requests.get("https://da-test.frankbold.org/playgroundstatic/PravoNaInformace/1/duvody.json")
   y = json.loads(page.content)
   dict = {}
 
