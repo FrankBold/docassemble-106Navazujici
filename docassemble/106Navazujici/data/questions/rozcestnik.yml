@@ -19,17 +19,17 @@ objects:
 mandatory: True
 code: |
   multi_user = True
+  situace
+  duvod
+  hodnoceni
+  postup
+  argumenty
 ---
 question: |
   Jakou situaci řešíte?
 field: situace
-choices:
-  - Orgán nijak nereagoval: necinnost
-  - Žádost či její část byla odmítnuta: odmitnuti
-  - Nebyly poskytnuty všechny požadované informace: neuplne
-  - Byl jsem vyzván k zaplacení nákladů: uhrada
-  - Žádost byla vyrizena, ale spatně: chybne
-  - Jiné: jine
+code: |
+  ziskejSituace()
 ---
 question: |
   Z jakého důvodu žádá úhradu
@@ -55,3 +55,18 @@ buttons:
   - Důvod je oprávnění: opravnen
   - Neoprávněné: neopravnen
   - Nevím: nevi
+---
+question: |
+  Jak chcete dále postupovat?
+field: postup
+choices:
+  - Přečtu si podklady a poradím si sám: svepomoc
+  - Vytvořím si v rozhraní stížnost: generator
+  - Obrátím se na advokaty: advokati
+---
+question: |
+  Odpovídá Vaší situaci, některá z níže uvedených?
+field: argumenty
+choices:
+  - Povinný subjekt požaduje úhradu za poskytnutí kopií požadovaných listin. V oznámení o výši úhrady uvádí pouze celkovou částku požadovanou za kopie.: 01
+  - Povinný subjekt požaduje úhradu za opatření technických nosičů dat (CD, DVD ...), na kterých vám má informace být předána. V oznámení o výši úhrady uvádí uvádí pouze celkovou částku požadovanou za technické nosiče dat.: 02
