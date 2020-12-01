@@ -7,6 +7,9 @@ metadata:
       organization: Frank Bold Society
   revision_date: 2020-11-05
 ---
+modules:
+  - .funkce
+---
 features:
   question help button: true
 ---
@@ -27,18 +30,19 @@ code: |
 ---
 question: |
   Jakou situaci řešíte?
-field: situace
-code: |
-  ziskejSituace()
+fields:
+  - no label: situace
+    input type: radio
+    code: |
+      ziskejSituace()
 ---
 question: |
   Z jakého důvodu žádá úhradu
-field: duvod
-choices:
-  - Pořízení kopií: kopie
-  - Opatření technických nosičů dat: nosice
-  - Odeslání informací: odeslani
-  - Mimořádné rozsáhlé vyhledávání: rozsah
+fields:
+  - no label: duvod
+    input type: radio
+    code:
+      ziskeDuvody(situace)
 ---
 question: |
   Úhrada z důvodu pořízení kopií
