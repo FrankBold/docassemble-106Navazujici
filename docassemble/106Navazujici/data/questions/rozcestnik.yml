@@ -42,7 +42,7 @@ fields:
   - no label: duvod
     input type: radio
     code:
-      ziskeDuvody(situace)
+      ziskejDuvody(situace)
 ---
 question: |
   Úhrada z důvodu pořízení kopií
@@ -70,7 +70,8 @@ choices:
 ---
 question: |
   Odpovídá Vaší situaci, některá z níže uvedených?
-field: argumenty
-choices:
-  - Povinný subjekt požaduje úhradu za poskytnutí kopií požadovaných listin. V oznámení o výši úhrady uvádí pouze celkovou částku požadovanou za kopie.: 01
-  - Povinný subjekt požaduje úhradu za opatření technických nosičů dat (CD, DVD ...), na kterých vám má informace být předána. V oznámení o výši úhrady uvádí uvádí pouze celkovou částku požadovanou za technické nosiče dat.: 02
+fields:
+  - no label: argumenty
+    input type: radio
+    code:
+      ziskejArgumentyProti(duvod)
