@@ -255,6 +255,14 @@
          "popis":"Povinný subjekt může požadovat náhradu za mimořádně rozsáhlé vyhledávání, pokud shromáždění informací bude pro daný povinný subjekt představovat v jeho konkrétních podmínkách časově náročnou činnost, která se objektivně vzato vymyká běžnému poskytování informací tímto subjektem. Oznámení povinného subjektu o povinnosti úhrady musí obsahovat odůvodnění mimořádnosti a odkaz na sazebník.",
          "title":"Mimořádné rozsáhlé vyhledávání",
          "parent":40000
+      },
+      {
+         "v":1,
+         "ID":10100,
+         "name":"necinnost",
+         "popis":"Povinný subjekt žádost v 15 denní lhůtě nijak nevyřídil. Nevydatel tedy rozhodnutí o odmítnutí, ani informaci neposkytl.",
+         "title":"Povinný nereaguje",
+         "parent":10000
       }
    ]
 }

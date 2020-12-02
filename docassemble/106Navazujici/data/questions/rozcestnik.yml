@@ -22,11 +22,6 @@ objects:
 mandatory: True
 code: |
   multi_user = True
-  situace
-  duvod
-  hodnoceni
-  postup
-  argumenty
 ---
 question: |
   Jakou situaci řešíte?
@@ -36,24 +31,35 @@ fields:
     code: |
       ziskejSituace()
 ---
+sets: final_situace
+code: |
+  final_situace = obsahSituace(situace)
+---
+sets: final_duvod
+code: |
+  duvod_seznam = ziskejDuvody(situace)
+  if len(duvod_seznam) == 1:
+    final_duvod = obsahDuvodu(int(list(duvod_seznam.keys())[0]))
+  else:
+    final_duvod = obsahDuvodu(duvod)
+---
 question: |
-  Z jakého důvodu žádá úhradu
+  Z jakého důvodu?
 fields:
   - no label: duvod
     input type: radio
     code:
-      ziskejDuvody(situace)
+      duvod_seznam
 ---
 question: |
-  Úhrada z důvodu pořízení kopií
+  ${ final_duvod['title'] }
 subquestion: |
-  Jedná se o takové a onaké náklady spojené s tím a oním.
+  ${ final_duvod['popis'] }
 
-  V případě pořízení kopie tiskem lze akceptovat jednotkovou sazbu v identické výši jakao v případě pořízení listiné kopie.
-
-  ## Časté:
-  - Požadování úhrady za poskytnutí informaci za kopie listin spolu s uvedením seznamu poskytovaných kopií s údajem o počtu listů, druhu a formátu kopie, jednotkové částce a celkové částce za kopie požadované.
-  - Požadování úhrady za poskytnutí informací za kopie listin pouze s uvedením celkové částky požadované za kopie.
+  ## Časté příklady neoprávněného odmítnutí:
+  % for arg in ziskejArgumentyProti(final_duvod['ID']).values():
+  - ${ arg }
+  % endfor
 field: hodnoceni
 buttons:
   - Důvod je oprávnění: opravnen
@@ -68,10 +74,33 @@ choices:
   - Vytvořím si v rozhraní stížnost: generator
   - Obrátím se na advokaty: advokati
 ---
+need: hodnoceni
 question: |
   Odpovídá Vaší situaci, některá z níže uvedených?
 fields:
-  - no label: argumenty
+  - no label: argument
     input type: radio
     code:
-      ziskejArgumentyProti(duvod)
+      ziskejArgumentyProti(final_duvod['ID'])
+---
+sets: final_arg
+code: |
+  final_arg = obsahArgumentu(argument)
+---
+question: |
+  ${ final_arg['titleMinus'] }
+subquestion: |
+  ${ final_arg['popis'] }
+
+  ## Odůvodnění do odvolání:
+  ${ final_arg['oduvodneni'] }
+continue button field: kSablone
+---
+need: kSablone
+mandatory: True
+code: |
+  if kSablone:
+    if final_situace["podání"] == "odvolání":
+      command("leave", url="https://da-test.frankbold.org/interview?i=docassemble.VzoryPravnichPodani:odvolaniSpravni.yml&idSesn=" + user_info().session +"&idFile=" + user_info().filename)
+    else:
+      command("leave", url="https://da-test.frankbold.org/interview?i=docassemble.VzoryPravnichPodani:stiznost.yml&idSesn=" + user_info().session +"&idFile=" + user_info().filename)
