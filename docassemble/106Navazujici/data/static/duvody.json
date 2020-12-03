@@ -263,6 +263,22 @@
          "popis":"Povinný subjekt žádost v 15 denní lhůtě nijak nevyřídil. Nevydatel tedy rozhodnutí o odmítnutí, ani informaci neposkytl.",
          "title":"Povinný nereaguje",
          "parent":10000
+      },
+      {
+         "v":1,
+         "ID":30100,
+         "name":"neuplne",
+         "popis":"Povinný orgán sice na žádost reagoval a některé informace poskytl, avšak ne všechny. Nějaké položky z žádosti vynechal a zároveň o nich nevydal rozhodnutí o odmítnutí části žádosti.",
+         "title":"Nebylo postkytnuto vše",
+         "parent":30000
+      },
+      {
+         "v":1,
+         "ID":50100,
+         "name":"zpusobVyrizeni",
+         "popis":"Povinný orgán sice informace poskytl, ale ne v požadovaném formátu či podobě.",
+         "title":"Poskytnuto špatně",
+         "parent":50000
       }
    ]
 }

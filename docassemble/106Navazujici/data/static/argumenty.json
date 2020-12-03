@@ -539,6 +539,26 @@
          "oduvodneni":null,
          "titleMinus": "Orgán nevyřídil žádost v zákonných lhůtách.",
          "obligatorni":null
+      },
+      {
+         "ID":30101,
+         "name":"neuplne",
+         "popis":"Povinný orgán sice na žádost reagoval a některé informace poskytl, avšak ne všechny. Nějaké položky z žádosti vynechal a zároveň o nich nevydal rozhodnutí o odmítnutí části žádosti.",
+         "parent":30100,
+         "titlePlus":null,
+         "oduvodneni":null,
+         "titleMinus": "Orgán na některé body z žádosti nereagoval.",
+         "obligatorni":null
+      },
+      {
+         "ID":50101,
+         "name":"zpusobVyrizeni",
+         "popis":"Povinný orgán sice informace poskytl, ale ne v požadovaném formátu či podobě. Formát neodpovídá žádosti a je v této podobě nepoužitelný.",
+         "parent":50100,
+         "titlePlus":null,
+         "oduvodneni":null,
+         "titleMinus": "Povinný informace poskytl ve špatné podobě.",
+         "obligatorni":null
       }
    ]
 }
