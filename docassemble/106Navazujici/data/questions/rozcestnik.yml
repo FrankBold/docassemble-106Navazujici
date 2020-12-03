@@ -9,9 +9,11 @@ metadata:
 ---
 modules:
   - .funkce
+  - .progressivedisclosure
 ---
 features:
   question help button: true
+  css: progressivedisclosure.css
 ---
 objects:
   - Podatel: Person.using(nazev="podatele")
@@ -29,14 +31,11 @@ fields:
   - no label: situace
     input type: radio
     code: |
-      ziskejSituace()
----
-sets: final_situace
-code: |
-  final_situace = obsahSituace(situace)
+      ziskejSituace().items()
 ---
 sets: final_duvod
 code: |
+  final_situace = obsahSituace(situace)
   duvod_seznam = ziskejDuvody(situace)
   if len(duvod_seznam) == 1:
     final_duvod = obsahDuvodu(int(list(duvod_seznam.keys())[0]))
@@ -49,22 +48,27 @@ fields:
   - no label: duvod
     input type: radio
     code:
-      duvod_seznam
+      duvod_seznam.items()
 ---
 question: |
   ${ final_duvod['title'] }
 subquestion: |
   ${ final_duvod['popis'] }
 
-  ## Časté příklady neoprávněného odmítnutí:
+  ${ prog_disclose(casteDuvody) } 
+field: hodnoceni
+buttons:
+  - Důvod je oprávněný: opravnen
+  - Neoprávněné: neopravnen
+  - Nevím: nevi
+---
+template: casteDuvody
+subject: |
+  Časté příklady neoprávněného odmítnutí:
+content: |
   % for arg in ziskejArgumentyProti(final_duvod['ID']).values():
   - ${ arg }
   % endfor
-field: hodnoceni
-buttons:
-  - Důvod je oprávnění: opravnen
-  - Neoprávněné: neopravnen
-  - Nevím: nevi
 ---
 question: |
   Jak chcete dále postupovat?
@@ -81,19 +85,42 @@ fields:
   - no label: argument
     input type: radio
     code:
-      ziskejArgumentyProti(final_duvod['ID'])
+      ziskejArgumentyProti(final_duvod['ID']).items()
+action buttons:
+  - label: Žádný u uvedených
+    action: argumentJine
+    color: warning  
+css: |
+  <style>
+  input.labelauty + label > span.labelauty-unchecked-image, input.labelauty + label > span.labelauty-checked-image {
+  display:none;
+  }
+  
+  input.labelauty + label span {
+  line-height:1.2rem !important;
+  vertical-align:middle !important;
+  margin-left:0 !important;
+  }
+  
+  </style>
 ---
 sets: final_arg
 code: |
   final_arg = obsahArgumentu(argument)
 ---
 question: |
-  ${ final_arg['titleMinus'] }
+  V čem je postup neoprávněný
 subquestion: |
+  ${ final_arg['titleMinus'] }
+  
+  ## Podrobný popis
   ${ final_arg['popis'] }
 
-  ## Odůvodnění do odvolání:
-  ${ final_arg['oduvodneni'] }
+  % if final_arg['obligatorni'] == "O":
+  U tohoto důvodu je povinný orgán ze zákona povinnen odmítnout informaci poskytnout. Zákon tak nedává prostor, aby orgán v případě informaci o své vůli poskytl.
+  % elif final_arg['obligatorni'] == "F":
+  V této situaci není orgán povinnen informaci neposkytnout. Má pouze ze zákona tu možnost, nemusí ji však využít. Věc je tedy do určité míry ponechána na uvážení úřad. Doporučujeme tak úřadu odůvodnit, proč je poskytnutí informace důležité.
+  % endif
 continue button field: kSablone
 ---
 need: kSablone
